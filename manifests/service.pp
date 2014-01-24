@@ -1,12 +1,14 @@
-class pacemaker::service( $ensure='running',
-                          $enable=true) {
-  include pacemaker
+class pacemaker::service(
+  $ensure='running',
+  $enable=true
+) {
+
   service { 'pacemaker':
-                      ensure     => $ensure,
-                      enable     => $enable,
-                      hasstatus  => true,
-                      hasrestart => true,
-                      require    => [ Anchor['pacemaker::begin'] ],
+    ensure     => $ensure,
+    enable     => $enable,
+    hasstatus  => true,
+    hasrestart => true,
+    require    => Package['pacemaker'],
   }
 
 }
